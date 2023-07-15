@@ -127,7 +127,7 @@
       
       
       } else {
-        output = '<span class="unknown-command">Comando desconhecido: ' + command + '-h para ver os comandos.'+'</span>';
+        output = '<span class="unknown-command">Comando desconhecido: ' + "'"+ command +"'" + "'-h' para ver os comandos."+'</span>';
       }
 
       outputElement.innerHTML += '<div class="output">' + command + '<br>' + output + '</div>';
