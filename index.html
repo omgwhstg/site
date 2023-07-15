@@ -95,16 +95,38 @@
         output = 'Este é um terminal Linux simulado em HTML e JavaScript.';
       } else if (command === 'user') {
         output = 'Usuário atual: whsXD';
-      } else if (command === 'files') {
-        output = 'arquivo1.txt<br>DirFinder.py<br>arquivo3.txt';
+      } else if (command === 'ls') {
+        output = 'Ferramentas<br>Social';
       } else if (command === 'disk') {  
         output = 'Espaço usado: 50GB<br>Espaço livre: 450GB';
       } else if (command === 'network') {
         output = 'Status da rede: Conectado';
-      } else if (command === 'commands') {
-        output = 'Comandos disponíveis:<br>date - Exibe a data e hora atual<br>hello - Exibe a mensagem "Olá, mundo!"<br>ip [endereço IP] - Exibe informações sobre o endereço IP fornecido<br>about - Exibe informações sobre o terminal<br>user - Exibe o usuário atual<br>files - Lista os arquivos disponíveis<br>disk - Exibe informações sobre o espaço em disco<br>network - Exibe informações sobre o status da rede<br>commands - Exibe os comandos disponíveis';
+      } else if (command === '-h') {
+        output = "Comandos disponíveis:<br>date - Exibe a data e hora atual<br>ip [endereço IP] - Exibe informações sobre o endereço IP fornecido<br>about - Exibe informações sobre o terminal<br>user - Exibe o usuário atual<br>ls - Lista os arquivos disponíveis<br>disk - Exibe informações sobre o espaço em disco<br>network - Exibe informações sobre o status da rede<br>commands - Exibe os comandos disponíveis<br> cd - Navegue até o diretório escolhido<br> python3 - Necessário para abrir arquivo '.py'<br> -h - Oferece ajuda sobre o painel como o 'help'<br> help - Oferece ajuda sobre o painel como o '-h'"
+      } else if (command === 'help') {
+        output = "Comandos disponíveis:<br>date - Exibe a data e hora atual<br>ip [endereço IP] - Exibe informações sobre o endereço IP fornecido<br>about - Exibe informações sobre o terminal<br>user - Exibe o usuário atual<br>ls - Lista os arquivos disponíveis<br>disk - Exibe informações sobre o espaço em disco<br>network - Exibe informações sobre o status da rede<br>commands - Exibe os comandos disponíveis<br> cd - Navegue até o diretório escolhido<br> python3 - Necessário para abrir arquivo '.py<br> -h - Oferece ajuda sobre o painel como o 'help'<br> help - Oferece ajuda sobre o painel como o '-h'" 
+      } else if (command === 'cd Ferramentas') {
+        output = 'DirFinder.py<br>';
+      } else if (command === 'cd Social') {
+        output = 'github.txt <br>tiktok.txt <br>discord.txt ';
+      } else if (command === 'cat github.txt') {
+        output = '1- <br>2- https://www.tiktok.com/@omgwhstg<br> 3- <br> 4- <br>';
+      } else if (command === 'cat discord.txt') {
+        output = '1- <br>2- https://github.com/omgwhstg<br> 3- <br> 4- <br>';
+      } else if (command === 'cat tiktok.txt') {
+        output = '1- <br>2- discordapp.com/users/1116389637213134919 <br> 3- <br> 4- <br>';
+      } else if (command === 'cat tiktok.txt') {
+        output = '1- <br>2- discordapp.com/users/1116389637213134919 <br> 3- <br> 4- <br>';
+
+
+
+      } else if (command === 'python3 DirFinder.py') {
+        output = 'Dps eu boto o link kekew';
+      
+      
+      
       } else {
-        output = '<span class="unknown-command">Comando desconhecido: ' + command + '</span>';
+        output = '<span class="unknown-command">Comando desconhecido: ' + command + '-h para ver os comandos.'+'</span>';
       }
 
       outputElement.innerHTML += '<div class="output">' + command + '<br>' + output + '</div>';
