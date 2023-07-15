@@ -9,6 +9,10 @@
       font-family: monospace;
       font-size: 14px;
       padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     .terminal {
@@ -16,7 +20,7 @@
       padding: 10px;
       width: 600px;
       height: 400px;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
 
     .input-line {
@@ -41,6 +45,10 @@
     .output {
       margin-bottom: 10px;
     }
+
+    .unknown-command {
+      color: red;
+    }
   </style>
   <script>
     function handleCommand() {
@@ -57,12 +65,46 @@
         outputElement.innerHTML = '';
         input.value = '';
         return;
+      } else if (command.startsWith('ip ')) {
+        var ipAddress = command.substring(3).trim();
+        if (ipAddress === '') {
+          output = 'Digite um endereço IP válido.';
+        } else {
+          fetch('http://ip-api.com/json/' + ipAddress)
+            .then(response => response.json())
+            .then(data => {
+              output = 'Endereço IP: ' + data.query + '<br>';
+              output += 'País: ' + data.country + '<br>';
+              output += 'Região: ' + data.regionName + '<br>';
+              output += 'Cidade: ' + data.city + '<br>';
+              output += 'Provedor de Internet: ' + data.isp;
+              outputElement.innerHTML += '<div class="output">' + command + '<br>' + output + '</div>';
+            })
+            .catch(error => {
+              output = 'Erro ao consultar o endereço IP.';
+              outputElement.innerHTML += '<div class="output">' + command + '<br>' + output + '</div>';
+            });
+          input.value = '';
+          return;
+        }
       } else if (command === 'date') {
         output = new Date().toLocaleString();
       } else if (command === 'hello') {
         output = 'Olá!';
+      } else if (command === 'about') {
+        output = 'Este é um terminal Linux simulado em HTML e JavaScript.';
+      } else if (command === 'user') {
+        output = 'Usuário atual: whsXD';
+      } else if (command === 'files') {
+        output = 'arquivo1.txt<br>DirFinder.py<br>arquivo3.txt';
+      } else if (command === 'disk') {  
+        output = 'Espaço usado: 50GB<br>Espaço livre: 450GB';
+      } else if (command === 'network') {
+        output = 'Status da rede: Conectado';
+      } else if (command === 'commands') {
+        output = 'Comandos disponíveis:<br>date - Exibe a data e hora atual<br>hello - Exibe a mensagem "Olá, mundo!"<br>ip [endereço IP] - Exibe informações sobre o endereço IP fornecido<br>about - Exibe informações sobre o terminal<br>user - Exibe o usuário atual<br>files - Lista os arquivos disponíveis<br>disk - Exibe informações sobre o espaço em disco<br>network - Exibe informações sobre o status da rede<br>commands - Exibe os comandos disponíveis';
       } else {
-        output = 'Comando desconhecido: ' + command;
+        output = '<span class="unknown-command">Comando desconhecido: ' + command + '</span>';
       }
 
       outputElement.innerHTML += '<div class="output">' + command + '<br>' + output + '</div>';
